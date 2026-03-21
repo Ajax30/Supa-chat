@@ -17,6 +17,7 @@ defineProps({
 <style scoped>
 .avatar {
   position: relative;
+  flex-shrink: 0;
 }
 
 .avatar img {

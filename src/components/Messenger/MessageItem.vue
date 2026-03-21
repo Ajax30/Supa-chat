@@ -32,7 +32,6 @@ defineProps({
   margin-bottom: 30px;
   width: 100%;
   max-width: 100%;
-  box-sizing: border-box;
   word-break: break-word;
 }
 
