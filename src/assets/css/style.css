@@ -1,19 +1,4 @@
 /* ===============================
-   App Wrapper
-   =============================== */
-.app-wrapper {
-  background: #fff;
-  height: 100vh;
-}
-
-@media (max-width: 767px) {
-  .app-wrapper {
-    height: auto;
-    min-height: 100vh;
-  }
-}
-
-/* ===============================
        Sidebar
        =============================== */
 .sidebar {
