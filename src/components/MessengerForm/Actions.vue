@@ -13,18 +13,33 @@
 </template>
 
 <script setup>
-import { ref, defineEmits } from 'vue'
+import { ref, defineEmits } from "vue";
 
-const emit = defineEmits(['sendMessage'])
-const message = ref('')
+const emit = defineEmits(["sendMessage"]);
+const message = ref("");
 
 function handleSend() {
   if (message.value.trim()) {
-    emit('sendMessage', message.value)
-    message.value = ''
+    emit("sendMessage", message.value);
+    message.value = "";
   }
 }
 </script>
 
 <style scoped>
+.actions {
+  margin-left: 15px;
+  display: flex;
+}
+
+.actions button {
+  padding: 5px;
+  color: #6c757d;
+}
+
+.actions button.submit {
+  font-size: 150%;
+  color: #331c7c;
+  padding-right: 0;
+}
 </style>

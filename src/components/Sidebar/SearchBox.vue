@@ -20,10 +20,9 @@
 
 .search-box input[type="text"] {
   border-bottom: 1px solid #8b8da9;
-  padding: 0 3px 6px;
-  font-size: 12px;
+  padding: 2px 4px;
+  font-size: 14px;
   color: #8b8da9;
   width: 100%;
-  box-sizing: border-box;
 }
 </style>

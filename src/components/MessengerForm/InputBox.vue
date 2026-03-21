@@ -12,9 +12,14 @@
 
 <script setup>
 defineProps({
-  modelValue: String
-})
+  modelValue: String,
+});
 </script>
 
 <style scoped>
+input[type="text"] {
+  flex: 1;
+  padding: 5px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
 </style>

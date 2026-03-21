@@ -55,8 +55,6 @@ defineProps({
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   width: auto;
-  max-width: calc(100% - 55px);
-  box-sizing: border-box;
   word-break: break-word;
 }
 
