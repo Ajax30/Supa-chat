@@ -1,28 +1,18 @@
 <template>
   <div class="avatar">
-    <img :src="avatarSrc" :alt="alt" />
-    <span
-      v-if="status"
-      :class="['d-inline-block', 'status-bubble', status]"
-    ></span>
+    <img :src="image" :alt="alt" />
+    <span v-if="status" :class="['d-inline-block', 'status-bubble', status]"></span>
   </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
-
-const props = defineProps({
+defineProps({
   image: String,
-  alt: { type: String, default: "User avatar" },
-  status: String,
-});
-
-const avatarSrc = computed(() =>
-  props.image
-    ? new URL(`../assets/images/${props.image}`, import.meta.url).href
-    : "",
-);
+  alt: { type: String, default: 'User avatar' },
+  status: String
+})
 </script>
+
 
 <style scoped>
 .avatar {

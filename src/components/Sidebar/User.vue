@@ -1,5 +1,5 @@
 <template>
-  <div class="user-profile d-flex">
+  <div class="user-profile d-flex align-items-center">
     <Avatar :image="avatar" :alt="name" :status="status" />
     <UserInfo :name="name" :latestMessage="latestMessage" />
   </div>
@@ -13,13 +13,6 @@ defineProps({
   avatar: String,
   name: String,
   latestMessage: String,
-  status: String,
+  status: String
 });
 </script>
-
-<style scoped>
-.user-profile {
-  display: flex;
-  align-items: center;
-}
-</style>

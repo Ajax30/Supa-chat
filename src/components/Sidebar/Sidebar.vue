@@ -1,6 +1,10 @@
 <template>
   <div class="sidebar">
-    <MyProfile />
+    <MyProfile
+      name="Carmen Smith"
+      :avatar="carmenImg"
+      myStatus="Available for freelance work."
+    />
     <Actions />
     <SearchBox />
     <UsersList />
@@ -12,6 +16,7 @@ import MyProfile from "@/components/Sidebar/MyProfile.vue";
 import Actions from "@/components/Sidebar/Actions.vue";
 import SearchBox from "@/components/Sidebar/SearchBox.vue";
 import UsersList from "@/components/Sidebar/UsersList.vue";
+import carmenImg from "@/assets/images/carmen.jpg";
 </script>
 
 <style scoped>

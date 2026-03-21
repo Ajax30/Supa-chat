@@ -6,17 +6,47 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import InputBox from '@/components/MessengerForm/InputBox.vue'
-import Actions from '@/components/MessengerForm/Actions.vue'
+import { ref } from "vue";
+import InputBox from "@/components/MessengerForm/InputBox.vue";
+import Actions from "@/components/MessengerForm/Actions.vue";
 
-const message = ref('')
+const message = ref("");
 
 function handleSend(msg) {
-  console.log('Send message:', msg)
-  message.value = ''
+  console.log("Send message:", msg);
+  message.value = "";
 }
 </script>
 
 <style scoped>
+.messenger-footer {
+  height: 75px;
+  box-shadow: 0px 0px 25px 2px rgba(0, 0, 0, 0.07);
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 5px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.actions {
+  margin-left: 15px;
+  display: flex;
+}
+
+.actions button {
+  padding: 5px;
+  color: #6c757d;
+}
+
+button.submit {
+  font-size: 150%;
+  color: #331c7c;
+  padding-right: 0;
+}
 </style>

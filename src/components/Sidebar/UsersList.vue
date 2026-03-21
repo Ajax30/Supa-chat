@@ -1,7 +1,7 @@
 <template>
   <ul class="users-list">
     <li v-for="user in users" :key="user.name">
-      <User
+      <SidebarUser
         :avatar="user.avatar"
         :name="user.name"
         :latestMessage="user.latestMessage"
@@ -12,37 +12,43 @@
 </template>
 
 <script setup>
-import User from "@/components/Sidebar/User.vue";
+import SidebarUser from "@/components/Sidebar/User.vue";
 
 const users = [
   {
-    avatar: "dean.jpg",
     name: "Dean Clover",
-    latestMessage: "Lorem ipsum dolor sit amet [...]",
+    avatar: "/src/assets/images/dean.jpg",
+    latestMessage: "Lorem ipsum dolor sit amet consectetur [...]",
     status: "online",
   },
   {
-    avatar: "carmen.jpg",
     name: "Carmen Smith",
-    latestMessage: "Lorem ipsum dolor sit amet [...]",
+    avatar: "/src/assets/images/carmen.jpg",
+    latestMessage: "Lorem ipsum dolor sit amet consectetur [...]",
     status: "online",
   },
   {
-    avatar: "jane.jpg",
     name: "Jane Fountain",
-    latestMessage: "Lorem ipsum dolor sit amet [...]",
+    avatar: "/src/assets/images/jane.jpg",
+    latestMessage: "Lorem ipsum dolor sit amet consectetur [...]",
     status: "online",
   },
   {
-    avatar: "john.jpg",
     name: "John Smith",
-    latestMessage: "Lorem ipsum dolor sit amet [...]",
+    avatar: "/src/assets/images/john.jpg",
+    latestMessage: "Lorem ipsum dolor sit amet consectetur [...]",
     status: "online",
   },
 ];
 </script>
 
 <style scoped>
+.users-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 .users-list li {
   padding: 25px;
   cursor: pointer;
