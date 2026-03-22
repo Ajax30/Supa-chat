@@ -92,7 +92,7 @@ defineProps({
   -webkit-user-select: none;
   cursor: pointer;
   color: #fff;
-  line-height: 1;
+  line-height: 1.2;
 }
 
 .file-upload-btn:hover::before {
@@ -109,12 +109,12 @@ defineProps({
   font-weight: 900;
   text-decoration: inherit;
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
   padding-right: 12px;
+  left: 11px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 10px;
 }
 
 .form-card button[type="submit"] {
