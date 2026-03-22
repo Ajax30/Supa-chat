@@ -14,10 +14,6 @@ defineProps({
 </script>
 
 <style>
-.app-wrapper {
-  flex-direction: column;
-}
-
 .form-container {
   flex: 1;
   justify-content: center;
@@ -45,16 +41,17 @@ defineProps({
 .form-card label {
   padding-left: 6px;
   color: #6c757d;
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .form-card input[type="text"],
 .form-card input[type="email"],
 .form-card input[type="password"]   {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 3px 6px;
+  padding: 0 6px 3px 6px;
   color: #8b8da9;
   margin-bottom: 15px;
+  font-size: 14px;
 }
 
 .form-card button[type="submit"] {
