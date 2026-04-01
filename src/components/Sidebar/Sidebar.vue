@@ -1,5 +1,10 @@
 <template>
-  <PerfectScrollbar class="sidebar" :options="{ suppressScrollX: true }">
+  <PerfectScrollbar
+    ref="ps"
+    class="sidebar"
+    :class="{ open: isOpen }"
+    :options="{ suppressScrollX: true }"
+  >
     <MyProfile
       name="Carmen Smith"
       :avatar="carmenImg"
@@ -7,7 +12,7 @@
     />
     <Actions />
     <SearchBox />
-    <UsersList /> 
+    <UsersList />
   </PerfectScrollbar>
 </template>
 
@@ -19,8 +24,13 @@ import UsersList from "@/components/Sidebar/UsersList.vue";
 import carmenImg from "@/assets/images/carmen.jpg";
 import { ref } from "vue";
 
+// Reference to PerfectScrollbar (we keep for potential future use)
+const ps = ref(null);
+
+// Sidebar open/close state
 const isOpen = ref(false);
 
+// Toggle sidebar
 function toggleSidebar() {
   isOpen.value = !isOpen.value;
 }
