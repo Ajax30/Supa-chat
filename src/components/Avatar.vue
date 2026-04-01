@@ -13,7 +13,6 @@ defineProps({
 })
 </script>
 
-
 <style scoped>
 .avatar {
   position: relative;
