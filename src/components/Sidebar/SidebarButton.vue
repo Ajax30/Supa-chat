@@ -8,8 +8,8 @@
 <script setup>
 defineProps({
   icon: { type: String, required: true },
-  isActive: { type: Boolean, required: true, default: false },
-  hasBubble: { type: Boolean, required: true, default: false },
+  isActive: { type: Boolean, required: false, default: false },
+  hasBubble: { type: Boolean, required: false, default: false },
 });
 </script>
 
@@ -26,8 +26,6 @@ button {
   top: 1px;
   right: 0;
   background-color: #44b6ff;
-  box-shadow:
-    0 0 6px #44b6ff,
-    0 0 12px #44b6ff;
+  box-shadow: 0 0 6px #44b6ff, 0 0 12px #44b6ff;
 }
 </style>
