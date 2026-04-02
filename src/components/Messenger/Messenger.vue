@@ -2,6 +2,7 @@
   <div class="messenger d-flex">
     <MessengerHeader
       :user="headerUser"
+      :sidebarRef="sidebarRef"
       @toggleSidebar="toggleSidebar"
     />
     <MessageList :messages="messages" />
@@ -39,7 +40,6 @@ const messages = ref([
     time: '10:03',
     message: 'Lorem ipsum dolor sit amet sed.'
   }
-  // add other messages similarly
 ])
 
 const newMessage = ref('')
@@ -55,10 +55,14 @@ function sendMessage(msg) {
   newMessage.value = ''
 }
 
+const sidebarVisible = ref(true)
+const sidebarRef = {
+  toggleSidebar() {
+    sidebarVisible.value = !sidebarVisible.value
+  }
+}
+
 function toggleSidebar() {
-  // emit event to toggle sidebar on small screens
+  sidebarVisible.value = !sidebarVisible.value
 }
 </script>
-
-<style scoped>
-</style>
