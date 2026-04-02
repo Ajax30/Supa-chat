@@ -6,63 +6,63 @@
       @toggleSidebar="toggleSidebar"
     />
     <MessageList :messages="messages" />
-    <MessengerFooter
-      v-model:message="newMessage"
-      @sendMessage="sendMessage"
-    />
+    <MessengerFooter v-model:message="newMessage" @sendMessage="sendMessage" />
   </div>
 </template>
 
 <script setup>
-import MessengerHeader from '@/components/Messenger/MessengerHeader.vue'
-import MessageList from '@/components/Messenger/MessageList.vue'
-import MessengerFooter from '@/components/Messenger/MessengerFooter.vue'
-import { ref } from 'vue'
+import MessengerHeader from "@/components/Messenger/MessengerHeader.vue";
+import MessageList from "@/components/Messenger/MessageList.vue";
+import MessengerFooter from "@/components/Messenger/MessengerFooter.vue";
+import { ref } from "vue";
 
 const headerUser = {
-  image: '/src/assets/images/carmen.jpg',
-  name: 'Carmen Smith',
-  status: 'online'
-}
+  image: "/src/assets/images/carmen.jpg",
+  name: "Carmen Smith",
+  status: "online",
+};
 
 const messages = ref([
   {
-    image: '/src/assets/images/jane.jpg',
-    name: 'Jane Fountain',
-    status: 'offline',
-    time: '10:01',
-    message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit...'
+    image: "/src/assets/images/jane.jpg",
+    name: "Jane Fountain",
+    status: "offline",
+    time: "10:01",
+    message: "Lorem ipsum dolor sit amet consectetur adipisicing elit...",
   },
   {
-    image: '/src/assets/images/john.jpg',
-    name: 'John Smith',
-    status: 'online',
-    time: '10:03',
-    message: 'Lorem ipsum dolor sit amet sed.'
-  }
-])
+    image: "/src/assets/images/john.jpg",
+    name: "John Smith",
+    status: "online",
+    time: "10:03",
+    message: "Lorem ipsum dolor sit amet sed.",
+  },
+]);
 
-const newMessage = ref('')
+const newMessage = ref("");
 
 function sendMessage(msg) {
   messages.value.push({
-    image: '/src/assets/images/carmen.jpg',
-    name: 'You',
-    status: 'online',
-    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-    message: msg
-  })
-  newMessage.value = ''
+    image: "/src/assets/images/carmen.jpg",
+    name: "You",
+    status: "online",
+    time: new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    }),
+    message: msg,
+  });
+  newMessage.value = "";
 }
 
-const sidebarVisible = ref(true)
+const sidebarVisible = ref(true);
 const sidebarRef = {
   toggleSidebar() {
-    sidebarVisible.value = !sidebarVisible.value
-  }
-}
+    sidebarVisible.value = !sidebarVisible.value;
+  },
+};
 
 function toggleSidebar() {
-  sidebarVisible.value = !sidebarVisible.value
+  sidebarVisible.value = !sidebarVisible.value;
 }
 </script>
