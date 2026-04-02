@@ -1,29 +1,23 @@
 <template>
   <div class="user-profile my-profile d-flex align-items-center">
-    <!-- Sound toggle bell -->
-    <span id="soundToggle" class="sound-toggle text-white me-2">
+    <span id="soundToggle" class="sound-toggle text-white">
       <i class="fa-solid fa-bell"></i>
     </span>
 
     <Avatar :image="avatar" :alt="name" />
-
-    <UserInfo
-      :name="name"
-      :status="myStatus"
-      :isMyProfile="true"
-    />
+    <UserInfo :name="name" :status="myStatus" :isMyProfile="true" />
   </div>
 </template>
 
 <script setup>
-import Avatar from '@/components/Avatar.vue'
-import UserInfo from '@/components/UserInfo.vue'
+import Avatar from "@/components/Avatar.vue";
+import UserInfo from "@/components/UserInfo.vue";
 
 defineProps({
   name: String,
-  avatar: String,      
-  myStatus: String 
-})
+  avatar: String,
+  myStatus: String,
+});
 </script>
 
 <style scoped>

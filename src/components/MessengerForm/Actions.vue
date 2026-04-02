@@ -6,22 +6,28 @@
     <button class="icon" title="Emoji">
       <i class="fa-regular fa-face-smile"></i>
     </button>
-    <button class="submit" title="Send" @click="handleSend">
+    <button
+      class="submit"
+      title="Send"
+      @click="handleSend"
+      :disabled="!message.trim()"
+    >
       <i class="fa-solid fa-paper-plane"></i>
     </button>
   </div>
 </template>
 
 <script setup>
-import { ref, defineEmits } from "vue";
+
+const props = defineProps({
+  message: { type: String, default: "" },
+});
 
 const emit = defineEmits(["sendMessage"]);
-const message = ref("");
 
 function handleSend() {
-  if (message.value.trim()) {
-    emit("sendMessage", message.value);
-    message.value = "";
+  if (props.message.trim()) {
+    emit("sendMessage", props.message);
   }
 }
 </script>
@@ -40,5 +46,10 @@ function handleSend() {
   font-size: 150%;
   color: #331c7c;
   padding-right: 0;
+}
+
+.actions button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
 }
 </style>

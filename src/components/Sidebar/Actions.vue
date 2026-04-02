@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-  import SidebarButton from "@/components/Sidebar/SidebarButton.vue";
+import SidebarButton from "@/components/Sidebar/SidebarButton.vue";
 </script>
 
 <style scoped>
