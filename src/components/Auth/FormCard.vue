@@ -54,6 +54,14 @@ defineProps({
   padding-bottom: 9px;
 }
 
+.error {
+  color: #dc3545;
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 .form-card input[type="text"],
 .form-card input[type="email"],
 .form-card input[type="password"] {

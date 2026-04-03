@@ -177,13 +177,3 @@ async function submit() {
   console.log("Form submitted:", { ...form, photo: photo.value })
 }
 </script>
-
-<style scoped>
-.error {
-  color: #dc3545;
-  font-size: 12px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-</style>
