@@ -40,9 +40,15 @@ defineExpose({ toggleSidebar });
 
 <style scoped>
 .sidebar {
-  width: 320px;
+  width: 275px;
   background: #261c46;
   overflow: auto;
+}
+
+@media (min-width: 360px) {
+  .sidebar {
+    width: 320px;
+  }
 }
 
 @media (max-width: 767px) {

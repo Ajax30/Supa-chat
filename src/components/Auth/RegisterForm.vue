@@ -147,7 +147,7 @@ function validateField(fieldName) {
     .catch(err => errors[fieldName] = err.message)
 }
 
-// Watch all fields for **live validation after touched**
+// Watch all fields for live validation after touched
 watch(form.firstName, () => touched.firstName && validateField("firstName"))
 watch(form.lastName, () => touched.lastName && validateField("lastName"))
 watch(form.email, () => touched.email && validateField("email"))
