@@ -1,6 +1,6 @@
 # Supa-chat
 
-A chat app made with Vue and Supabase.
+A chat app UI made with Vue. The free PSD file was [downloaded](https://psdrepo.com/free-psd/messenger-ui-concept-freebie/) from **psdrepo.com**.
 
 ## Screenshots
 
