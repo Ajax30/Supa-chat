@@ -20,10 +20,9 @@
           {{ errors.password }}
         </span>
       </div>
-
       <span class="error" v-if="authError">{{ authError }}</span>
 
-      <button type="submit" class="w-100">Login</button>
+      <SubmitButton type="submit" text="Login" colorClass="primary" :fullWidth="true" />
     </form>
   </FormCard>
 </template>
@@ -31,7 +30,7 @@
 <script setup>
 import { reactive, ref } from "vue";
 import FormCard from "@/components/Auth/FormCard.vue";
-// import { supabase } from "@/lib/supabaseClient"; // adjust if needed
+import SubmitButton from "@/components-ui/Button.vue"
 
 const form = reactive({
   email: "",

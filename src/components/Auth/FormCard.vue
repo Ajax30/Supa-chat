@@ -124,22 +124,4 @@ defineProps({
   top: 50%;
   transform: translateY(-50%);
 }
-
-.form-card button[type="submit"] {
-  line-height: 1;
-  outline: none;
-  background: #372379;
-  border: 0;
-  border-radius: 3px;
-  padding: 10px 20px;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.form-card button[type="submit"]:hover {
-  background: #4e3e81;
-}
 </style>

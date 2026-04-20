@@ -4,87 +4,58 @@
       <!-- First Name -->
       <div class="form-field">
         <label class="d-block">First Name</label>
-        <input
-          class="d-block w-100"
-          type="text"
-          placeholder="Ex. John"
-          v-model="form.firstName"
-          @blur="touched.firstName = true; validateField('firstName')"
-        />
+        <input class="d-block w-100" type="text" placeholder="Ex. John" v-model="form.firstName"
+          @blur="touched.firstName = true; validateField('firstName')" />
         <span class="error" v-if="touched.firstName && errors.firstName">{{ errors.firstName }}</span>
       </div>
 
       <!-- Last Name -->
       <div class="form-field">
         <label class="d-block">Last Name</label>
-        <input
-          class="d-block w-100"
-          type="text"
-          placeholder="Ex. Smith"
-          v-model="form.lastName"
-          @blur="touched.lastName = true; validateField('lastName')"
-        />
+        <input class="d-block w-100" type="text" placeholder="Ex. Smith" v-model="form.lastName"
+          @blur="touched.lastName = true; validateField('lastName')" />
         <span class="error" v-if="touched.lastName && errors.lastName">{{ errors.lastName }}</span>
       </div>
 
       <!-- Email -->
       <div class="form-field">
         <label class="d-block">Email</label>
-        <input
-          class="d-block w-100"
-          type="email"
-          placeholder="yourname@example.com"
-          v-model="form.email"
-          @blur="touched.email = true; validateField('email')"
-        />
+        <input class="d-block w-100" type="email" placeholder="yourname@example.com" v-model="form.email"
+          @blur="touched.email = true; validateField('email')" />
         <span class="error" v-if="touched.email && errors.email">{{ errors.email }}</span>
       </div>
 
       <!-- Photo (optional) -->
       <div class="form-field bordered">
         <label class="d-block">Photo</label>
-        <input
-          class="d-block file-upload-btn"
-          type="file"
-          accept="image/*"
-          @change="handleFile"
-        />
+        <input class="d-block file-upload-btn" type="file" accept="image/*" @change="handleFile" />
         <span class="error" v-if="photoError">{{ photoError }}</span>
       </div>
 
       <!-- Password -->
       <div class="form-field">
         <label class="d-block">Password</label>
-        <input
-          class="d-block w-100"
-          type="password"
-          placeholder="Your Password"
-          v-model="form.password"
-          @blur="touched.password = true; validateField('password')"
-        />
+        <input class="d-block w-100" type="password" placeholder="Your Password" v-model="form.password"
+          @blur="touched.password = true; validateField('password')" />
         <span class="error" v-if="touched.password && errors.password">{{ errors.password }}</span>
       </div>
 
       <!-- Repeat Password -->
       <div class="form-field">
         <label class="d-block">Repeat Password</label>
-        <input
-          class="d-block w-100"
-          type="password"
-          placeholder="Your Password Again"
-          v-model="form.passwordRepeat"
-          @blur="touched.passwordRepeat = true; validateField('passwordRepeat')"
-        />
+        <input class="d-block w-100" type="password" placeholder="Your Password Again" v-model="form.passwordRepeat"
+          @blur="touched.passwordRepeat = true; validateField('passwordRepeat')" />
         <span class="error" v-if="touched.passwordRepeat && errors.passwordRepeat">{{ errors.passwordRepeat }}</span>
       </div>
 
-      <button type="submit" class="w-100">Register</button>
+      <SubmitButton type="submit" text="Submit" colorClass="primary" :fullWidth="true" />
     </form>
   </FormCard>
 </template>
 
 <script setup>
 import FormCard from "@/components/Auth/FormCard.vue"
+import SubmitButton from "@/components-ui/Button.vue"
 import * as yup from "yup"
 import { reactive, ref, watch } from "vue"
 
