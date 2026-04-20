@@ -2,102 +2,123 @@
   <FormCard title="Login">
     <form @submit.prevent="submit">
       <!-- Email -->
-      <div class="form-field">
-        <label class="d-block">Email</label>
-        <input class="d-block w-100" type="email" placeholder="yourname@example.com" v-model="form.email"
-          @blur="touched.email = true; validateField('email')" />
-        <span class="error" v-if="touched.email && errors.email">
-          {{ errors.email }}
-        </span>
-      </div>
+      <Input
+        label="Email"
+        type="email"
+        placeholder="yourname@example.com"
+        v-model="form.email"
+        :error="touched.email && errors.email"
+        @blur="touched.email = true; validateField('email')"
+      />
 
       <!-- Password -->
-      <div class="form-field">
-        <label class="d-block">Password</label>
-        <input class="d-block w-100" type="password" placeholder="Your password" v-model="form.password"
-          @blur="touched.password = true; validateField('password')" />
-        <span class="error" v-if="touched.password && errors.password">
-          {{ errors.password }}
-        </span>
-      </div>
-      <span class="error" v-if="authError">{{ authError }}</span>
+      <Input
+        label="Password"
+        type="password"
+        placeholder="Your password"
+        v-model="form.password"
+        :error="touched.password && errors.password"
+        @blur="touched.password = true; validateField('password')"
+      />
 
-      <SubmitButton type="submit" text="Login" colorClass="primary" :fullWidth="true" />
+      <!-- Auth error -->
+      <span class="error" v-if="authError">
+        {{ authError }}
+      </span>
+
+      <!-- Submit -->
+      <SubmitButton
+        type="submit"
+        text="Login"
+        colorClass="primary"
+        :fullWidth="true"
+      />
+
     </form>
   </FormCard>
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
-import FormCard from "@/components/Auth/FormCard.vue";
+import { reactive, ref } from "vue"
+import FormCard from "@/components/Auth/FormCard.vue"
 import SubmitButton from "@/components-ui/Button.vue"
+import Input from "@/components-ui/Input.vue"
 
 const form = reactive({
   email: "",
   password: "",
-});
+})
 
 const touched = reactive({
   email: false,
   password: false,
-});
+})
 
 const errors = reactive({
   email: "",
   password: "",
-});
+})
 
-const authError = ref("");
+const authError = ref("")
 
 // Validate a single field
 function validateField(field) {
   switch (field) {
     case "email":
       if (!form.email) {
-        errors.email = "Email is required";
+        errors.email = "Email is required"
       } else if (!/\S+@\S+\.\S+/.test(form.email)) {
-        errors.email = "Invalid email format";
+        errors.email = "Invalid email format"
       } else {
-        errors.email = "";
+        errors.email = ""
       }
-      break;
+      break
 
     case "password":
       if (!form.password) {
-        errors.password = "Password is required";
+        errors.password = "Password is required"
       } else {
-        errors.password = "";
+        errors.password = ""
       }
-      break;
+      break
   }
 }
 
 // Validate entire form
 function validateForm() {
-  validateField("email");
-  validateField("password");
-  return !errors.email && !errors.password;
+  validateField("email")
+  validateField("password")
+  return !errors.email && !errors.password
 }
 
 // Submit handler
 async function submit() {
-  authError.value = "";
+  authError.value = ""
 
-  touched.email = true;
-  touched.password = true;
+  touched.email = true
+  touched.password = true
 
-  if (!validateForm()) return;
+  if (!validateForm()) return
 
   const { error } = await supabase.auth.signInWithPassword({
     email: form.email,
     password: form.password,
-  });
+  })
 
   if (error) {
-    authError.value = "Invalid email or password";
-    return;
+    authError.value = "Invalid email or password"
+    return
   }
 
-  console.log("Logged in!");
+  console.log("Logged in!")
 }
 </script>
+
+<style scoped>
+.error {
+  color: #dc3545;
+  font-size: 12px;
+  display: block;
+  margin-bottom: 10px;
+}
+</style>

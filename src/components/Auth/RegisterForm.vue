@@ -2,53 +2,70 @@
   <FormCard title="Register">
     <form @submit.prevent="submit">
       <!-- First Name -->
-      <div class="form-field">
-        <label class="d-block">First Name</label>
-        <input class="d-block w-100" type="text" placeholder="Ex. John" v-model="form.firstName"
-          @blur="touched.firstName = true; validateField('firstName')" />
-        <span class="error" v-if="touched.firstName && errors.firstName">{{ errors.firstName }}</span>
-      </div>
+      <Input
+        label="First Name"
+        placeholder="Ex. John"
+        v-model="form.firstName"
+        :error="touched.firstName && errors.firstName"
+        @blur="touched.firstName = true; validateField('firstName')"
+      />
 
       <!-- Last Name -->
-      <div class="form-field">
-        <label class="d-block">Last Name</label>
-        <input class="d-block w-100" type="text" placeholder="Ex. Smith" v-model="form.lastName"
-          @blur="touched.lastName = true; validateField('lastName')" />
-        <span class="error" v-if="touched.lastName && errors.lastName">{{ errors.lastName }}</span>
-      </div>
+      <Input
+        label="Last Name"
+        placeholder="Ex. Smith"
+        v-model="form.lastName"
+        :error="touched.lastName && errors.lastName"
+        @blur="touched.lastName = true; validateField('lastName')"
+      />
 
       <!-- Email -->
-      <div class="form-field">
-        <label class="d-block">Email</label>
-        <input class="d-block w-100" type="email" placeholder="yourname@example.com" v-model="form.email"
-          @blur="touched.email = true; validateField('email')" />
-        <span class="error" v-if="touched.email && errors.email">{{ errors.email }}</span>
-      </div>
+      <Input
+        label="Email"
+        type="email"
+        placeholder="yourname@example.com"
+        v-model="form.email"
+        :error="touched.email && errors.email"
+        @blur="touched.email = true; validateField('email')"
+      />
 
       <!-- Photo (optional) -->
-      <div class="form-field bordered">
-        <label class="d-block">Photo</label>
-        <input class="d-block file-upload-btn" type="file" accept="image/*" @change="handleFile" />
-        <span class="error" v-if="photoError">{{ photoError }}</span>
-      </div>
+      <FileInput
+        label="Photo"
+        colorClass="primary"
+        accept="image/*"
+        :error="photoError"
+        @change="handleFile"
+      />
 
       <!-- Password -->
-      <div class="form-field">
-        <label class="d-block">Password</label>
-        <input class="d-block w-100" type="password" placeholder="Your Password" v-model="form.password"
-          @blur="touched.password = true; validateField('password')" />
-        <span class="error" v-if="touched.password && errors.password">{{ errors.password }}</span>
-      </div>
+      <Input
+        label="Password"
+        type="password"
+        placeholder="Your Password"
+        v-model="form.password"
+        :error="touched.password && errors.password"
+        @blur="touched.password = true; validateField('password')"
+      />
 
       <!-- Repeat Password -->
-      <div class="form-field">
-        <label class="d-block">Repeat Password</label>
-        <input class="d-block w-100" type="password" placeholder="Your Password Again" v-model="form.passwordRepeat"
-          @blur="touched.passwordRepeat = true; validateField('passwordRepeat')" />
-        <span class="error" v-if="touched.passwordRepeat && errors.passwordRepeat">{{ errors.passwordRepeat }}</span>
-      </div>
+      <Input
+        label="Repeat Password"
+        type="password"
+        placeholder="Your Password Again"
+        v-model="form.passwordRepeat"
+        :error="touched.passwordRepeat && errors.passwordRepeat"
+        @blur="touched.passwordRepeat = true; validateField('passwordRepeat')"
+      />
 
-      <SubmitButton type="submit" text="Submit" colorClass="primary" :fullWidth="true" />
+      <!-- Submit -->
+      <SubmitButton
+        type="submit"
+        text="Submit"
+        colorClass="primary"
+        :fullWidth="true"
+      />
+
     </form>
   </FormCard>
 </template>
@@ -56,10 +73,13 @@
 <script setup>
 import FormCard from "@/components/Auth/FormCard.vue"
 import SubmitButton from "@/components-ui/Button.vue"
+import Input from "@/components-ui/Input.vue"
+import FileInput from "@/components-ui/FileInput.vue"
+
 import * as yup from "yup"
 import { reactive, ref, watch } from "vue"
 
-// Reactive form data
+// Form data
 const form = reactive({
   firstName: "",
   lastName: "",
@@ -68,7 +88,7 @@ const form = reactive({
   passwordRepeat: ""
 })
 
-// Angular-style touched tracking
+// Touched state
 const touched = reactive({
   firstName: false,
   lastName: false,
@@ -77,7 +97,7 @@ const touched = reactive({
   passwordRepeat: false
 })
 
-// Reactive errors
+// Errors
 const errors = reactive({
   firstName: null,
   lastName: null,
@@ -86,9 +106,10 @@ const errors = reactive({
   passwordRepeat: null
 })
 
-// Photo (optional)
+// Photo
 const photo = ref(null)
 const photoError = ref("")
+
 function handleFile(e) {
   const file = e.target.files[0]
   if (file && !file.type.startsWith("image/")) {
@@ -100,47 +121,51 @@ function handleFile(e) {
   }
 }
 
-// Yup validation schema
+// Validation schema
 const schema = yup.object({
   firstName: yup.string().required("First name is required"),
   lastName: yup.string().required("Last name is required"),
   email: yup.string().email("Invalid email").required("Email is required"),
-  password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
-  passwordRepeat: yup.string()
+  password: yup
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+  passwordRepeat: yup
+    .string()
     .oneOf([yup.ref("password")], "Passwords must match")
     .required("Repeat password is required")
 })
 
-// Validate single field live
+// Validate one field
 function validateField(fieldName) {
-  schema.validateAt(fieldName, form)
-    .then(() => errors[fieldName] = null)
-    .catch(err => errors[fieldName] = err.message)
+  schema
+    .validateAt(fieldName, form)
+    .then(() => (errors[fieldName] = null))
+    .catch(err => (errors[fieldName] = err.message))
 }
 
-// Watch all fields for live validation after touched
-watch(form.firstName, () => touched.firstName && validateField("firstName"))
-watch(form.lastName, () => touched.lastName && validateField("lastName"))
-watch(form.email, () => touched.email && validateField("email"))
-watch(form.password, () => touched.password && validateField("password"))
-watch(form.passwordRepeat, () => touched.passwordRepeat && validateField("passwordRepeat"))
+// Live validation
+watch(() => form.firstName, () => touched.firstName && validateField("firstName"))
+watch(() => form.lastName, () => touched.lastName && validateField("lastName"))
+watch(() => form.email, () => touched.email && validateField("email"))
+watch(() => form.password, () => touched.password && validateField("password"))
+watch(() => form.passwordRepeat, () => touched.passwordRepeat && validateField("passwordRepeat"))
 
-// Full form validation
+// Full validation
 async function validateForm() {
   try {
     await schema.validate(form, { abortEarly: false })
-    Object.keys(errors).forEach(k => errors[k] = null)
+    Object.keys(errors).forEach(k => (errors[k] = null))
     return true
   } catch (err) {
-    err.inner.forEach(e => errors[e.path] = e.message)
+    err.inner.forEach(e => (errors[e.path] = e.message))
     return false
   }
 }
 
 // Submit
 async function submit() {
-  // Mark all fields as touched to show errors
-  Object.keys(touched).forEach(field => touched[field] = true)
+  Object.keys(touched).forEach(field => (touched[field] = true))
 
   const valid = await validateForm()
   if (!valid) return
